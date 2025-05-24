@@ -43,7 +43,7 @@ const LoginPage = () => {
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong");
       }
-
+      localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
       setSuccess("Login successful!");
       Navigate('/');
