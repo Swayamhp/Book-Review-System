@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import BookCard from "../components/BookCard";
+import  { useState, useEffect } from "react";
+import BookCard from "../components/BookCard.jsx";
 
 const ratings = [1, 2, 3, 4, 5];
 

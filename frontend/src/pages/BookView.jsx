@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Review from "../components/Review";
-import { useUser } from "../components/UserContext";
-import LoadingSpinner from "../../utils/LoadingSpinner";
+import Review from "../components/Review.jsx";
+import { useUser } from "../components/UserContext.jsx";
 
 export default function BookView() {
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -91,7 +90,6 @@ export default function BookView() {
     addReview();
   };
 
-  if (loading) return <LoadingSpinner/>;
   if (!book) return null;
 
    return (

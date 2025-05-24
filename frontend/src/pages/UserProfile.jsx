@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useUser } from "../components/UserContext";
+import { useUser } from "../components/UserContext.jsx";
 
 export default function UserProfile() {
   const { id } = useParams();

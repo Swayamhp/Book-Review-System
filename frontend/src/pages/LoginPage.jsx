@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useUser } from "../components/UserContext";
+import  { useState } from "react";
+import { useUser } from "../components/UserContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {

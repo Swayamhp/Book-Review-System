@@ -4,7 +4,7 @@ import RegisterPage from './pages/RegisterPage.jsx'
 import LoginPage from './pages/LoginPage.jsx';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from './pages/Home.jsx';
-import NavBar from './components/Navbar.jsx';
+import NavBar from './components/NavBar.jsx';
 import BookView from './pages/BookView.jsx';
 import UserProfile from './pages/UserProfile.jsx';
 

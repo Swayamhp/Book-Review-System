@@ -1,5 +1,4 @@
-import React from 'react'
-import StarRating from './StarRating';
+import StarRating from './StarRating.jsx';
 import { Link } from "react-router-dom";
 
 

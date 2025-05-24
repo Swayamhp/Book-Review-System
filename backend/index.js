@@ -13,7 +13,9 @@ connectDb();
 
 //set up middle ware
 app.use(cors({
-  origin: 'http://localhost:5173' // React dev server URL
+  // origin: 'http://localhost:5173' 
+  origin:'https://book-review-webp.netlify.app'
+
 }));
 app.use(express.json());
 const PORT = process.env.PORT || 5000;

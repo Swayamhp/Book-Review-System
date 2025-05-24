@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 
 const RegisterPage = () => {
 const apiUrl = import.meta.env.VITE_API_URL;
