@@ -9,11 +9,15 @@ const BookCard = ({ filteredBooks }) => {
           key={book._id}
           className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow p-4 flex flex-col"
         >
-          <img
-            src={book.thumbnailUrl}
-            alt={book.title}
-            className="h-48 w-full object-cover rounded-xl mb-4"
-          />
+          {/* Larger and clearer image */}
+          <div className="w-full h-80 bg-gray-100 rounded-xl flex items-center justify-center overflow-hidden mb-4">
+            <img
+              src={book.thumbnailUrl}
+              alt={book.title}
+              className="max-h-full max-w-full object-cover"
+            />
+          </div>
+
           <h3 className="text-lg font-semibold text-gray-800 mb-1 truncate">{book.title}</h3>
           <p className="text-sm text-gray-600 mb-1">
             <span className="font-medium">Author(s):</span> {book.authors.join(", ")}
@@ -45,4 +49,5 @@ const BookCard = ({ filteredBooks }) => {
 };
 
 export default BookCard;
+
 
