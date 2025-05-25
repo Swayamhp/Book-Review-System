@@ -1,5 +1,6 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import BookCard from "../components/BookCard.jsx";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const ratings = [1, 2, 3, 4, 5];
 
@@ -11,11 +12,13 @@ const Home = () => {
   const [genresList, setGenresList] = useState(["All"]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchBooks = async () => {
     try {
+      setLoading(true);
       const query = new URLSearchParams({
         page: currentPage,
         limit: 8,
@@ -31,7 +34,6 @@ const Home = () => {
         setBooksData(data.books);
         setTotalPages(data.totalPages);
 
-        // Dynamically collect unique genres from books
         const genreSet = new Set();
         data.books.forEach((book) => {
           book.categories?.forEach((cat) => genreSet.add(cat));
@@ -43,10 +45,11 @@ const Home = () => {
       }
     } catch (err) {
       console.error("Error:", err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Refetch when filters or page change
   useEffect(() => {
     fetchBooks();
   }, [currentPage, genre, search, minRating]);
@@ -68,10 +71,8 @@ const Home = () => {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-50">
-      {/* Sidebar */}
       <aside className="lg:w-64 w-full bg-white p-6 border-b lg:border-b-0 lg:border-r space-y-4">
         <h2 className="text-xl font-bold">Filters</h2>
-
         <input
           type="text"
           placeholder="Search by title or author"
@@ -79,7 +80,6 @@ const Home = () => {
           onChange={handleSearchChange}
           className="w-full border px-3 py-2 rounded"
         />
-
         <div>
           <label className="block mb-1 font-medium">Genre</label>
           <select
@@ -94,7 +94,6 @@ const Home = () => {
             ))}
           </select>
         </div>
-
         <div>
           <label className="block mb-1 font-medium">Minimum Rating</label>
           <select
@@ -112,17 +111,15 @@ const Home = () => {
         </div>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-1 p-6">
         <h1 className="text-2xl font-semibold mb-4">Books</h1>
-
-        {booksData.length === 0 ? (
+        {loading ? (
+          <LoadingSpinner />
+        ) : booksData.length === 0 ? (
           <p className="text-gray-500">No books match your filters.</p>
         ) : (
           <>
             <BookCard filteredBooks={booksData} />
-
-            {/* Pagination Controls */}
             <div className="flex justify-center items-center gap-4 mt-6">
               <button
                 disabled={currentPage === 1}
@@ -137,7 +134,7 @@ const Home = () => {
               <button
                 disabled={currentPage === totalPages}
                 onClick={() => setCurrentPage((prev) => prev + 1)}
-                className="px-4 py-2 bg-indigo-700 text-amber-50  rounded hover:bg-indigo-800 disabled:opacity-50"
+                className="px-4 py-2 bg-indigo-700 text-amber-50 rounded hover:bg-indigo-800 disabled:opacity-50"
               >
                 Next
               </button>
@@ -150,6 +147,7 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
 

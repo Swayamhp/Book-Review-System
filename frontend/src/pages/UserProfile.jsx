@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useUser } from "../components/UserContext.jsx";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 export default function UserProfile() {
   const { id } = useParams();
@@ -68,7 +69,14 @@ export default function UserProfile() {
     fetchUsersReviews();
   }, [id]);
 
-  if (loading) return <div className="p-6 text-center">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   if (error) return <div className="p-6 text-center text-red-500">{error}</div>;
   if (!profileUser) return <div className="p-6 text-center text-gray-500">User not found.</div>;
 
@@ -76,7 +84,6 @@ export default function UserProfile() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
-      {/* Profile Header */}
       <div className="bg-white rounded-xl shadow p-6 flex flex-col md:flex-row items-center gap-6">
         <img
           src={profileUser.avatar || "/default-avatar.png"}
@@ -128,7 +135,6 @@ export default function UserProfile() {
               <h2 className="text-3xl font-bold">{profileUser.name || "Unnamed User"}</h2>
               <p className="text-gray-600"><strong>Email:</strong> {profileUser.email || "N/A"}</p>
               <p className="text-gray-500 text-sm"><strong>User ID:</strong> {profileUser._id}</p>
-
               {isCurrentUser && (
                 <button
                   onClick={() => setEditMode(true)}
@@ -142,7 +148,6 @@ export default function UserProfile() {
         </div>
       </div>
 
-      {/* User Reviews */}
       <div className="bg-white rounded-xl shadow p-6">
         <h3 className="text-2xl font-semibold mb-4">Reviews by {profileUser.name || "this user"}</h3>
         {userReviews.length === 0 ? (
@@ -166,6 +171,7 @@ export default function UserProfile() {
     </div>
   );
 }
+
 
 
 

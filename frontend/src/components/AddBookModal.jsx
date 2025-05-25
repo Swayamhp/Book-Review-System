@@ -116,7 +116,12 @@ const AddBookModal = ({ isOpen, onClose }) => {
             >
               Cancel
             </button>
-            {loading && <LoadingSpinner />}
+            {loading && (
+  <div className="absolute inset-0 bg-white bg-opacity-70 flex items-center justify-center rounded-lg">
+    <LoadingSpinner />
+  </div>
+)}
+
             <button
               type="submit"
               disabled={loading}
