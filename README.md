@@ -76,8 +76,7 @@ View profile:
 
 ### 📁 Backend Setup (Express + MongoDB)
 
-```bash
-# 1. Navigate to the backend directory
+  # 1. Navigate to the backend directory
 cd backend
 
 # 2. Install dependencies
@@ -91,8 +90,8 @@ PORT=5000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 
-# 5. Update CORS (if needed for dev)
-# In app.js or middleware setup
+# 5. Update CORS 
+# In index.js 
 origin: 'http://localhost:5173'
 
 # 6. Start the backend server
@@ -121,8 +120,8 @@ npm run dev
 
 | Method | Endpoint              | Description              |
 |--------|-----------------------|--------------------------|
-| POST   | `/api/auth/register`  | Register new user        |
-| POST   | `/api/auth/login`     | Login and receive JWT    |
+| POST   | `/api/register`  | Register new user        |
+| POST   | `/api/login`     | Login and receive JWT    |
 
 ---
 
