@@ -2,6 +2,7 @@ import  { useState } from "react";
 import { useUser } from "./UserContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import AddBookModal from "./AddBookModal.jsx";
+import logoImage from "../assets/Book1.png";
 
 const NavBar = () => {
   const { user, logout } = useUser();
@@ -21,9 +22,15 @@ const NavBar = () => {
       <nav className="bg-white shadow-sm border-b px-6 py-4">
         <div className="flex items-center justify-between max-w-7xl mx-auto">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold text-indigo-600 tracking-wide">
-            BookReview
-          </Link>
+          <Link to="/" className="flex items-center">
+  <img 
+    src={logoImage} 
+    alt="logo" 
+    className=" h-13 object-contain" 
+  />
+
+</Link>
+
 
           {/* Right Controls */}
           <div className="flex items-center gap-4">
